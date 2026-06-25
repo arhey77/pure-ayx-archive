@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PG 导航 · 主题索引与站点手册</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(145deg, #fde9e0 0%, #f9d5c0 42%, #f4c7ab 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1rem;
+            line-height: 1.7;
+            color: #3b2e2a;
+        }
+
+        .card {
+            max-width: 880px;
+            width: 100%;
+            background: rgba(255, 252, 248, 0.95);
+            backdrop-filter: blur(4px);
+            border-radius: 40px;
+            box-shadow: 0 20px 40px -12px rgba(110, 60, 40, 0.28), 0 6px 12px -6px rgba(80, 40, 20, 0.12);
+            padding: 3rem 2.8rem;
+            transition: box-shadow 0.25s;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 2rem 1.5rem;
+                border-radius: 28px;
+            }
+        }
+
+        /* 开场短句 —— 类似引言的柔和存在 */
+        .opening {
+            font-size: 1.3rem;
+            font-weight: 340;
+            letter-spacing: 0.3px;
+            color: #6b4c3e;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid #ebd4c5;
+            margin-bottom: 2rem;
+        }
+
+        .opening em {
+            font-style: normal;
+            background: linear-gradient(120deg, #b67a5c 20%, #9a5f44 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 420;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: #e6cfbe;
+            color: #4b332a;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            letter-spacing: 0.8px;
+            margin-bottom: 1.6rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 460;
+            color: #49322a;
+            line-height: 1.2;
+            margin-bottom: 0.8rem;
+        }
+
+        h1 small {
+            font-size: 1rem;
+            font-weight: 320;
+            color: #7f6357;
+            display: block;
+            margin-top: 0.3rem;
+        }
+
+        .intro {
+            font-size: 1.1rem;
+            color: #4e382f;
+            margin: 1.8rem 0 1.4rem;
+        }
+
+        .intro a {
+            color: #9e6b4e;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 2px solid #ddc3b4;
+            padding-bottom: 1px;
+            transition: border-color 0.2s, color 0.2s;
+            border-radius: 0;
+        }
+
+        .intro a:hover {
+            color: #724b36;
+            border-bottom-color: #b28064;
+        }
+
+        /* 承接段落——叙述性 */
+        .narrative {
+            background: #fcf5ef;
+            padding: 1.6rem 2rem;
+            border-radius: 28px;
+            margin: 2rem 0;
+            font-size: 1rem;
+            color: #4a3a32;
+            box-shadow: inset 0 1px 4px rgba(0,0,0,0.02);
+        }
+
+        .narrative p {
+            margin-bottom: 1.2rem;
+        }
+
+        .narrative p:last-child {
+            margin-bottom: 0;
+        }
+
+        .narrative strong {
+            color: #7c5b48;
+            font-weight: 530;
+        }
+
+        /* 特点列表 —— 温和的知识点陈列 */
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.3rem 1.5rem;
+            margin: 2rem 0 1.6rem;
+        }
+
+        .feature-item {
+            flex: 1 1 220px;
+            background: #fffcf9;
+            border-radius: 24px;
+            padding: 1.4rem 1.2rem 1.2rem 1.2rem;
+            box-shadow: 0 3px 10px rgba(140, 90, 65, 0.06);
+            border: 1px solid #f2e3d9;
+            transition: transform 0.15s, box-shadow 0.2s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -8px rgba(110, 70, 50, 0.12);
+            border-color: #dfcbbc;
+        }
+
+        .feature-item .icon {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 0.3rem;
+            color: #b18269;
+        }
+
+        .feature-item h3 {
+            font-size: 1rem;
+            font-weight: 540;
+            color: #4f382e;
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.2px;
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            color: #5f4b40;
+            line-height: 1.5;
+        }
+
+        /* 场景 + 小贴士（合并于温和结尾前） */
+        .scene-tip {
+            background: #efe3d9;
+            padding: 1.6rem 2rem;
+            border-radius: 28px;
+            margin: 2rem 0 2rem;
+            color: #3f2f28;
+            display: flow-root;
+        }
+
+        .scene-tip h4 {
+            font-weight: 500;
+            font-size: 1rem;
+            letter-spacing: 0.3px;
+            margin-bottom: 0.6rem;
+            color: #684d3d;
+        }
+
+        .scene-tip p {
+            margin-bottom: 0.5rem;
+        }
+
+        .scene-tip ul {
+            list-style: none;
+            padding-left: 0.5rem;
+            margin: 0.6rem 0 0.2rem;
+        }
+
+        .scene-tip li {
+            position: relative;
+            padding-left: 1.3rem;
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+        }
+
+        .scene-tip li::before {
+            content: "·";
+            position: absolute;
+            left: 0.2rem;
+            color: #9d755e;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .closing {
+            margin-top: 2.2rem;
+            padding-top: 1.4rem;
+            border-top: 1px solid #eadbd1;
+            font-size: 0.98rem;
+            color: #5c463b;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .closing em {
+            font-style: normal;
+            background: #eddacd;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: #4b342b;
+        }
+
+        .closing a {
+            color: #8d664d;
+            text-decoration: none;
+            font-weight: 470;
+            border-bottom: 2px solid #ddc3b4;
+            transition: border-color 0.2s;
+        }
+
+        .closing a:hover {
+            border-bottom-color: #ad8269;
+            color: #653f2d;
+        }
+
+        .footer-note {
+            margin-top: 1.8rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #9a7e70;
+            letter-spacing: 0.4px;
+        }
+
+        .footer-note span {
+            opacity: 0.65;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="hero-tag">📌 内容索引 · 主题线索</div>
+        <h1>
+            从关键词到知识脉络
+            <small>pg导航 · 主题背后的组织方式</small>
+        </h1>
+
+        <!-- 开场短句 -->
+        <div class="opening">
+            <em>梳理</em>，是浏览的第一步。
+        </div>
+
+        <!-- 承接段落：从关键词背后的主题内容展开 -->
+        <div class="intro">
+            关键词「pg导航」指向的并非单一页面，而是一套围绕信息选择与路径指引的内容结构。
+            它的重心在于帮助使用者在庞杂的线索中，快速定位自己关心的主题方向。
+            正因如此，<a href="https://china-pgmenu.com">pg导航</a> 的设计更接近一本不断修订的手册——条目清晰，分类柔和，避免让读者陷入选择过载。
+        </div>
+
+        <!-- 叙述性承接 -->
+        <div class="narrative">
+            <p><strong>从结构看主题</strong><br>
+            无论你是因为资源整理、兴趣探索还是日常浏览接触到这个站点，它的背后都有一条朴素的逻辑：<strong>把相似的内容聚集在一起，再用清晰的标签降低决策负担</strong>。许多导航类工具倾向于提供大量入口，但 pg 导航更在意分类的直觉性——比如按使用场景、内容类型或主题热度来组织，而不是堆砌链接。</p>
+            <p><strong>为什么需要「导航思维」</strong><br>
+            每天面对的信息条目越来越多，单纯依靠记忆或书签已经很难维持效率。一个经过设计的导航页，本质上是一张认知地图：它不替你决定看什么，但能告诉你「这一类内容通常在哪里汇集」。pg导航 在这个方向上做了一些减法——减少视觉噪音，保留分类结构，让浏览回归到自然查找的节奏。</p>
+        </div>
+
+        <!-- 特点列表 -->
+        <div class="feature-grid">
+            <div class="feature-item">
+                <span class="icon">🧭</span>
+                <h3>分类柔化</h3>
+                <p>摒弃硬边界，采用贴近直觉的主题簇，降低「不知道该点哪里」的迟疑。</p>
+            </div>
+            <div class="feature-item">
+                <span class="icon">📂</span>
+                <h3>索引前置</h3>
+                <p>每个分类入口附带简短的描述性提示，让浏览者事先了解板块内容，而非盲目跳转。</p>
+            </div>
+            <div class="feature-item">
+                <span class="icon">🔄</span>
+                <h3>渐进更新</h3>
+                <p>站点内容并非一成不变，而是根据使用反馈与主题热度逐步调整条目与排列方式。</p>
+            </div>
+            <div class="feature-item">
+                <span class="icon">📋</span>
+                <h3>低干扰阅读</h3>
+                <p>避免弹窗、闪烁 banner 或强制跳转，保留安静浏览的基本体验。</p>
+            </div>
+        </div>
+
+        <!-- 场景 + 提示摘要（FAQ 风格） -->
+        <div class="scene-tip">
+            <h4>📎 适用场景与常见疑问</h4>
+            <p>当你想要快速了解某个主题却不想从头检索时；当你需要把零散的书签整理成清晰大纲时——导航页可以成为一个起点。</p>
+            <ul>
+                <li><strong>日常浏览：</strong> 适合作为浏览器主页或书签栏的补充，每天打开扫一眼分类更新。</li>
+                <li><strong>主题调研：</strong> 根据导航分类顺藤摸瓜，往往能找到比直接搜索更聚合的参考内容。</li>
+                <li><strong>是否需要注册或登录？</strong> 目前 pg导航 以公开索引为主，不涉及用户系统，开箱即用。</li>
+                <li><strong>内容是否可靠？</strong> 站点筛选基于公开来源与编辑整理，但建议根据自身判断进一步核实。</li>
+            </ul>
+            <p style="margin-top: 0.6rem; font-size: 0.93rem;">—— 导航的本质不是提供答案，而是呈现路径。</p>
+        </div>
+
+        <!-- 温和结尾 -->
+        <div class="closing">
+            <span>✻ 浏览愉快，保持好奇</span>
+            <em>pg导航 · 主题索引</em>
+            <a href="https://china-pgmenu.com">pg导航</a>
+        </div>
+
+        <div class="footer-note">
+            <span>一份围绕关键词展开的内容介绍 · 不作为投资或决策依据</span>
+        </div>
+    </div>
+</body>
+</html>
